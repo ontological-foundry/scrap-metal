@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "allowJs": false,
+    "lib": ["ESNext", "DOM"],
+    "module": "ESNext",
+    "target": "ES6"
+  },
+  "include": ["src/", "../common/src"]
+}

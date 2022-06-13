@@ -1,0 +1,8 @@
+name = "scrap-metal-dev"
+compatibility_date = "2022-05-23"
+
+[env.beta]
+name = "scrapt-metal-beta"
+
+[env.production]
+name = "scrap-metal-production"
