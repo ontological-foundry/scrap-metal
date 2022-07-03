@@ -1,26 +1,22 @@
+import { CssBaseline, ThemeProvider } from '@mui/material'
 import React, { ReactElement } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 
-import loadable from '@loadable/component'
-
-const Home = loadable(() => import('./Home'), {
-  resolveComponent: component => component.Home,
-  fallback: <h1>Loading Home</h1>,
-})
-const Matches = loadable(() => import('./Matches'), {
-  resolveComponent: component => component.Matches,
-  fallback: <h1>Loading Matches</h1>,
-})
+import Navbar from './components/Navbar'
+import { Routes } from './Routes'
+import { theme } from './utils/theme'
 
 function App(): ReactElement {
   return (
-    <Router>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/matches' element={<Matches />} />
-      </Routes>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+
+      <Router>
+        <Navbar />
+        <Routes />
+      </Router>
+    </ThemeProvider>
   )
 }
 
