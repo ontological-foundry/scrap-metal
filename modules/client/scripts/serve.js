@@ -13,6 +13,9 @@ const serve = async (servedir, listen) => {
       entryPoints: ['src/App.tsx'],
       outdir: 'static',
       bundle: true,
+      define: {
+        'process.env.TARGET': 'development',
+      },
     }
   )
 
