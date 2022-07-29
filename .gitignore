@@ -9,7 +9,3 @@
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
-
-.env*
-!.env.project
-!.env.vault

@@ -8,6 +8,7 @@
   },
   "scripts": {
     "client": "yarn workspace @scrapmetal/client",
+    "worker": "yarn workspace @scrapmetal/worker",
     "update": "yarn upgrade-interactive"
   },
   "repository": {
