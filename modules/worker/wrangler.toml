@@ -1,7 +1,15 @@
 name = "scrap-metal-dev"
 compatibility_date = "2022-05-23"
 
-main = "src/index"
+main = "dist/worker.js"
+
+[vars]
+ORIGIN = 'http://localhost:4000'
+
+
+[build]
+command = "yarn build"
+
 
 [dev]
 port = 4000

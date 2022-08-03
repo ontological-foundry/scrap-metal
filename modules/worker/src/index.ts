@@ -1,15 +1,25 @@
-/**
- * Welcome to Cloudflare Workers! This is your first worker.
- *
- * - Run `wrangler dev src/index.tsx` in your terminal to start a development server
- * - Open a browser tab at http://localhost:8787/ to see your worker in action
- * - Run `wrangler publish src/index.tsx --name my-worker` to publish your worker
- *
- * Learn more at https://developers.cloudflare.com/workers/
- */
+import Router from '@tsndr/cloudflare-worker-router'
+import { signIn } from './routes/sign-in'
+import { cors } from './utils/cors'
+import { options } from './utils/options'
+
+export interface Env {
+  FAUNA_ACCESS_KEY: string
+  ORIGIN: string
+}
+
+const router = new Router()
+
+router.options('*', options)
+
+router.post('/sign-in', cors, signIn)
+
+router.any('*', ({ res }) => {
+  res.status = 404
+})
 
 export default {
-  async fetch(request: Request): Promise<Response> {
-    return new Response('Hello World!')
+  async fetch(request: Request, env: Env) {
+    return router.handle(env, request)
   },
 }
