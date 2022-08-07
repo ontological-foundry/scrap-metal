@@ -1,0 +1,5 @@
+{
+  "name": "@scrapmetal/common-types",
+  "main": "src/main.ts",
+  "types": "src/main.ts"
+}

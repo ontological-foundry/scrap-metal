@@ -841,6 +841,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@scrapmetal/common-types@workspace:modules/common-types":
+  version: 0.0.0-use.local
+  resolution: "@scrapmetal/common-types@workspace:modules/common-types"
+  languageName: unknown
+  linkType: soft
+
 "@scrapmetal/worker@workspace:modules/worker":
   version: 0.0.0-use.local
   resolution: "@scrapmetal/worker@workspace:modules/worker"

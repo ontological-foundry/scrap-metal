@@ -1,8 +1,8 @@
 import { Hono } from 'hono'
+import { options } from './routes/options'
 
 import { signIn } from './routes/sign-in'
 import { cors } from './utils/cors'
-import { options } from './routes/options'
 
 export interface Env {
   FAUNA_ACCESS_KEY: string
@@ -17,12 +17,8 @@ app.use('*', cors)
 
 app.post('/sign-in', signIn)
 
-app.post('*', async c => {
-  const body = await c.req.parseBody()
-
-  console.log('BODY', body)
-
-  return c.json({ message: 'hi' })
+app.onError((error: any, c) => {
+  return c.text(error.message, 500)
 })
 
 export default app
