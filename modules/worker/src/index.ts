@@ -1,25 +1,28 @@
-import Router from '@tsndr/cloudflare-worker-router'
+import { Hono } from 'hono'
+
 import { signIn } from './routes/sign-in'
 import { cors } from './utils/cors'
-import { options } from './utils/options'
+import { options } from './routes/options'
 
 export interface Env {
   FAUNA_ACCESS_KEY: string
   ORIGIN: string
 }
 
-const router = new Router()
+const app = new Hono<Env>()
 
-router.options('*', options)
+app.options('*', options)
 
-router.post('/sign-in', cors, signIn)
+app.use('*', cors)
 
-router.any('*', ({ res }) => {
-  res.status = 404
+app.post('/sign-in', signIn)
+
+app.post('*', async c => {
+  const body = await c.req.parseBody()
+
+  console.log('BODY', body)
+
+  return c.json({ message: 'hi' })
 })
 
-export default {
-  async fetch(request: Request, env: Env) {
-    return router.handle(env, request)
-  },
-}
+export default app

@@ -1,4 +1,4 @@
-import type { RouterHandler } from '@tsndr/cloudflare-worker-router'
+import { Handler } from 'hono'
 import { createClient } from '../../utils/faunaClient'
 import {
   Let,
@@ -26,10 +26,12 @@ interface SignInResponse {
   now: values.FaunaTime
 }
 
-export const signIn: RouterHandler = async ({ req, res, env }) => {
-  const { email, password } = req.body as SignInRequest
+export const signIn: Handler = async c => {
+  const { email, password } = await c.req.json<SignInRequest>()
 
-  const client = createClient(env.FAUNA_ACCESS_KEY)
+  console.log('ACCESS', c.env.FAUNA_ACCESS_KEY)
+
+  const client = createClient(c.env.FAUNA_ACCESS_KEY)
 
   const response: SignInResponse = await client.query(
     Let(
@@ -54,15 +56,8 @@ export const signIn: RouterHandler = async ({ req, res, env }) => {
   const user = response.user
 
   if (token == null) {
-    res.status = 500
-    res.body = {
-      code: 'Error',
-    }
-    return
+    return c.json({ code: 'Error' }, 500)
   }
 
-  res.status = 200
-  res.body = {
-    message: 'Good?',
-  }
+  return c.json({ message: 'Good?' })
 }

@@ -21,7 +21,7 @@
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@types/react-router-dom": "^5.3.3",
-    "esbuild": "^0.14.51",
+    "esbuild": "^0.14.53",
     "esbuild-clean-plugin": "^1.0.0",
     "prettier": "^2.7.1",
     "typescript": "^4.7.4"
