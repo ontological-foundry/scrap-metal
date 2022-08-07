@@ -5,14 +5,13 @@ export const cors: Handler = async (c, next) => {
   const origin = c.req.headers.get('origin')
 
   if (origin == null || !matchOrigin(origin)) {
-    return c.text('Forbidden', 403)
+    return c.body(null, 403)
   }
 
   await next()
 
   c.header('Access-Control-Allow-Origin', origin)
-
-  c.header('Access-Control-Allow-Origin', origin)
+  c.header('Vary', 'origin')
   c.header('Access-Control-Allow-Header', 'content-type')
   c.header('Access-Control-Allow-Credentials', 'true')
 }
