@@ -1,3 +1,4 @@
 export enum ErrorCode {
-  BadData,
+  InternalError = 'Internal Error',
+  BadData = 'Bad Data',
 }

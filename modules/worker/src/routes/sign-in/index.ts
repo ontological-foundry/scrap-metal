@@ -1,25 +1,21 @@
+import { ErrorCode } from '@scrapmetal/common-types'
+import {
+  errors,
+  Get,
+  Index,
+  Let,
+  Login,
+  Match,
+  Now,
+  Select,
+  values,
+  Var,
+} from 'faunadb'
 import { Handler } from 'hono'
 import { createClient } from '../../utils/faunaClient'
-import {
-  Let,
-  Get,
-  Match,
-  Index,
-  Var,
-  Login,
-  Select,
-  Now,
-  values,
-  errors,
-} from 'faunadb'
 
 import { User } from '../../utils/User'
-import { ErrorCode } from '@scrapmetal/common-types'
-
-interface SignInRequest {
-  email: string
-  password: string
-}
+import { validateSignInRequest } from './api-types.validator'
 
 interface SignInResponse {
   token: {
@@ -32,18 +28,7 @@ interface SignInResponse {
 export const signIn: Handler = async c => {
   // Look for credentials already existing
 
-  const { email, password } = await c.req.json<SignInRequest>()
-
-  if (
-    email == null ||
-    email.length < 1 ||
-    password == null ||
-    password.length < 1
-  ) {
-    // TODO: More validation?
-
-    return c.json({ code: ErrorCode.BadData }, 400)
-  }
+  const { email, password } = validateSignInRequest(await c.req.json())
 
   const client = createClient(c.env.FAUNA_ACCESS_KEY)
 
@@ -73,7 +58,7 @@ export const signIn: Handler = async c => {
       case 'instance not found':
         return c.json({ code: ErrorCode.BadData }, 400)
       default:
-        return c.json({ code: 'Unknown' }, 500)
+        return c.json({ code: ErrorCode.InternalError }, 500)
     }
   }
 
@@ -81,8 +66,10 @@ export const signIn: Handler = async c => {
   const user = response.user
 
   if (token == null) {
-    return c.json({ code: 'Error' }, 500)
+    return c.json({ code: ErrorCode.InternalError }, 500)
   }
 
-  return c.json({ message: 'Good?' })
+  c.header('Set-Cookie', `SCRAP-TOKEN=${token}`)
+
+  return c.json({ user })
 }
