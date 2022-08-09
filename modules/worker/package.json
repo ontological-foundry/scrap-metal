@@ -4,7 +4,8 @@
   "scripts": {
     "serve": "wrangler dev --local",
     "start": "yarn serve",
-    "generate:validators": "create-validator-ts \"src/**/api-types.ts\" --generatorScript scripts/customValidatorCreator.js"
+    "generate:validators": "create-validator-ts \"src/**/api-types.ts\" --generatorScript scripts/customValidatorCreator.js",
+    "env:dev": "dotenv-vault pull development .dev.vars"
   },
   "dependencies": {
     "@cfworker/json-schema": "^1.12.3",
