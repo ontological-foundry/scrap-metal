@@ -1,4 +1,4 @@
-import { ErrorCode } from '@scrapmetal/common-types'
+import { RequestError } from '@scrapmetal/common-types'
 import {
   errors,
   Get,
@@ -56,9 +56,9 @@ export const signIn: Handler = async c => {
     const faunaError = error as errors.FaunaHTTPError
     switch (faunaError.requestResult.responseContent.errors[0].code) {
       case 'instance not found':
-        return c.json({ code: ErrorCode.BadData }, 400)
+        return c.json({ code: RequestError.SignInError }, 400)
       default:
-        return c.json({ code: ErrorCode.InternalError }, 500)
+        return c.json({ code: RequestError.InternalError }, 500)
     }
   }
 
@@ -66,7 +66,7 @@ export const signIn: Handler = async c => {
   const user = response.user
 
   if (token == null) {
-    return c.json({ code: ErrorCode.InternalError }, 500)
+    return c.json({ code: RequestError.InternalError }, 500)
   }
 
   c.header('Set-Cookie', `SCRAP-TOKEN=${token}`)

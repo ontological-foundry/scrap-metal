@@ -9,7 +9,7 @@ node_compat = true
 ORIGIN = 'http://localhost:4000'
 
 [dev]
-port = 4000
+port = 9000
 
 [env.beta]
 name = "scrapt-metal-beta"

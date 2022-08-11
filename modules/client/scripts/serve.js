@@ -13,8 +13,9 @@ const serve = async (servedir, listen) => {
       entryPoints: ['src/App.tsx'],
       outdir: 'static',
       bundle: true,
+      format: 'esm',
       define: {
-        'process.env.TARGET': 'development',
+        'process.env.TARGET': JSON.stringify('development'),
       },
     }
   )

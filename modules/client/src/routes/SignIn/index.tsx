@@ -13,6 +13,14 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom'
 import { FormBackground } from '../../components/Form/FormBackground'
 import { FormAvatar } from '../../components/Form/FormAvatar'
 import { FormSubmit } from '../../components/Form/FormSubmit'
+import { postRequest, SuccessfulAPIResponse } from '../../utils/API'
+
+interface SignInResponse extends SuccessfulAPIResponse {
+  data: {
+    // TODO: User Type
+    user: any
+  }
+}
 
 export default function SignIn(): ReactElement {
   // Refs for inputs
@@ -33,7 +41,34 @@ export default function SignIn(): ReactElement {
     setSubmitting(true)
     setRequestError(null)
 
+    try {
+      const response = await postRequest<SignInResponse>('/sign-in', {
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      })
 
+      if (!response.success) {
+        // TODO: More specific errors
+        console.log('Not Successful')
+
+        setRequestError('Email or Password incorrect')
+        setSubmitting(false)
+        return
+      }
+
+      // Success!
+      // TODO: Do something with user
+
+      // TODO: Navigate back to referred location
+      navigate('/')
+    } catch (error) {
+      console.error('Error getting response from Sign In', error)
+      setRequestError('Server Error')
+
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -65,7 +100,12 @@ export default function SignIn(): ReactElement {
           inputRef={passwordRef}
         />
       </FormBackground>
-      <FormSubmit disabled={submitting} fullWidth variant='outlined'>
+      <FormSubmit
+        disabled={submitting}
+        fullWidth
+        variant='outlined'
+        onClick={handleSubmit}
+      >
         {submitting ? <CircularProgress /> : 'Sign In'}
       </FormSubmit>
 

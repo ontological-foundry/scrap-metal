@@ -1,4 +1,5 @@
 export enum TargetName {
+  Local = 'local',
   Edge = 'edge',
   Dev = 'dev',
   Staging = 'staging',
@@ -10,7 +11,7 @@ const targetKey = 'API-Target'
 let currentTarget = localStorage.getItem(targetKey)
 
 if (currentTarget == null) {
-  currentTarget = process.env.TARGET ?? TargetName.Production
+  currentTarget = process.env.TARGET!
   localStorage.setItem(targetKey, currentTarget)
 }
 

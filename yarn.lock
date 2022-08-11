@@ -860,9 +860,11 @@ __metadata:
     esbuild-clean-plugin: ^1.0.0
     prettier: ^2.7.1
     react: ^18.2.0
+    react-async: ^10.0.1
     react-dom: ^18.2.0
     react-router-dom: ^6.3.0
     typescript: ^4.7.4
+    valtio: ^1.6.3
   languageName: unknown
   linkType: soft
 
@@ -4729,6 +4731,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"proxy-compare@npm:2.2.0":
+  version: 2.2.0
+  resolution: "proxy-compare@npm:2.2.0"
+  checksum: 74d1acc64cdebb83e346fe9232049133f41be354e82dab5ed6cdb958ff6972db6bfc4af0ad829d688695603b222e8546945357a315fec765d4b25064e701c422
+  languageName: node
+  linkType: hard
+
 "pump@npm:^3.0.0":
   version: 3.0.0
   resolution: "pump@npm:3.0.0"
@@ -4750,6 +4759,15 @@ __metadata:
   version: 4.0.1
   resolution: "quick-lru@npm:4.0.1"
   checksum: bea46e1abfaa07023e047d3cf1716a06172c4947886c053ede5c50321893711577cb6119360f810cc3ffcd70c4d7db4069c3cee876b358ceff8596e062bd1154
+  languageName: node
+  linkType: hard
+
+"react-async@npm:^10.0.1":
+  version: 10.0.1
+  resolution: "react-async@npm:10.0.1"
+  peerDependencies:
+    react: ">=16.3.1"
+  checksum: 30d3959f22b66bfbcc11041cacd6635c5e5818e3996a81ea9544bf411fa0aeccefe0f41b24b337f5b6d16db8be90cbdeae367f2f359a9ab615dd73122c3d69d2
   languageName: node
   linkType: hard
 
@@ -5857,6 +5875,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"use-sync-external-store@npm:1.2.0":
+  version: 1.2.0
+  resolution: "use-sync-external-store@npm:1.2.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 5c639e0f8da3521d605f59ce5be9e094ca772bd44a4ce7322b055a6f58eeed8dda3c94cabd90c7a41fb6fa852210092008afe48f7038792fd47501f33299116a
+  languageName: node
+  linkType: hard
+
 "use@npm:^3.1.0":
   version: 3.1.1
   resolution: "use@npm:3.1.1"
@@ -5878,6 +5905,36 @@ __metadata:
     spdx-correct: ^3.0.0
     spdx-expression-parse: ^3.0.0
   checksum: 35703ac889d419cf2aceef63daeadbe4e77227c39ab6287eeb6c1b36a746b364f50ba22e88591f5d017bc54685d8137bc2d328d0a896e4d3fd22093c0f32a9ad
+  languageName: node
+  linkType: hard
+
+"valtio@npm:^1.6.3":
+  version: 1.6.3
+  resolution: "valtio@npm:1.6.3"
+  dependencies:
+    proxy-compare: 2.2.0
+    use-sync-external-store: 1.2.0
+  peerDependencies:
+    "@babel/helper-module-imports": ">=7.12"
+    "@babel/types": ">=7.13"
+    aslemammad-vite-plugin-macro: ">=1.0.0-alpha.1"
+    babel-plugin-macros: ">=3.0"
+    react: ">=16.8"
+    vite: ">=2.8.6"
+  peerDependenciesMeta:
+    "@babel/helper-module-imports":
+      optional: true
+    "@babel/types":
+      optional: true
+    aslemammad-vite-plugin-macro:
+      optional: true
+    babel-plugin-macros:
+      optional: true
+    react:
+      optional: true
+    vite:
+      optional: true
+  checksum: cff6f96ed5006833b5ffdc92947c99da8165c44a2e45b83e6cc44dafeaea977fcef897357276c7e57adcce84e3ff50ed3cdbef9cc2a090b7b122db58e5b893f3
   languageName: node
   linkType: hard
 

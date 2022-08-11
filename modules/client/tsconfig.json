@@ -4,7 +4,8 @@
     "allowJs": false,
     "lib": ["ESNext", "DOM"],
     "module": "ESNext",
-    "target": "ES6"
+    "target": "ES6",
+    "jsx": "react"
   },
   "include": ["src/", "../common/src"]
 }

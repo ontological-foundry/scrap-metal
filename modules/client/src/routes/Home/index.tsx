@@ -1,5 +1,5 @@
-import { Box, Typography } from '@mui/material'
 import React, { ReactElement } from 'react'
+import { Box, Typography } from '@mui/material'
 
 export default function Home(): ReactElement {
   return (

@@ -23,6 +23,9 @@ esbuild
         verbose: true,
       }),
     ],
+    define: {
+      'process.env.TARGET': JSON.stringify(process.env.TARGET ?? 'production'),
+    },
   })
   .then(async result => {
     if (result.errors.length > 0) {
