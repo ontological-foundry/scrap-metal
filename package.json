@@ -1,5 +1,5 @@
 {
-  "packageManager": "yarn@3.2.1",
+  "packageManager": "yarn@3.2.3",
   "version": "0.1.0",
   "workspaces": {
     "packages": [
@@ -7,6 +7,8 @@
     ]
   },
   "scripts": {
+    "admin": "yarn workspace @scrapmetal/admin",
+    "aw": "yarn workspace @scrapmetal/admin-worker",
     "client": "yarn workspace @scrapmetal/client",
     "worker": "yarn workspace @scrapmetal/worker",
     "update": "yarn upgrade-interactive"

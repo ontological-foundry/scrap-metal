@@ -41,34 +41,27 @@ export default function SignIn(): ReactElement {
     setSubmitting(true)
     setRequestError(null)
 
-    try {
-      const response = await postRequest<SignInResponse>('/sign-in', {
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      })
+    const response = await postRequest<SignInResponse>('/sign-in', {
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
 
-      if (!response.success) {
-        // TODO: More specific errors
-        console.log('Not Successful')
+    if (!response.success) {
+      // TODO: More specific errors
+      console.log('Not Successful')
 
-        setRequestError('Email or Password incorrect')
-        setSubmitting(false)
-        return
-      }
-
-      // Success!
-      // TODO: Do something with user
-
-      // TODO: Navigate back to referred location
-      navigate('/')
-    } catch (error) {
-      console.error('Error getting response from Sign In', error)
-      setRequestError('Server Error')
-
+      setRequestError('Email or Password incorrect')
       setSubmitting(false)
+      return
     }
+
+    // Success!
+    // TODO: Do something with user
+
+    // TODO: Navigate back to referred location
+    navigate('/')
   }
 
   return (

@@ -4,12 +4,12 @@ import { options } from './routes/options'
 import { signIn } from './routes/sign-in'
 import { cors } from './utils/cors'
 
-export interface Env {
+interface Bindings {
   FAUNA_ACCESS_KEY: string
   ORIGIN: string
 }
 
-const app = new Hono<Env>()
+const app = new Hono<{ Bindings: Bindings }>()
 
 app.options('*', options)
 

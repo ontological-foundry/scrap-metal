@@ -1,5 +1,5 @@
-import { RequestError } from '@scrapmetal/common-types'
-import { getTarget, TargetName } from './APITarget'
+import { RequestError } from '@scrapmetal/common/errors'
+import { TargetName, getTarget } from '@scrapmetal/common/api-target'
 
 export interface SuccessfulAPIResponse extends Response {
   success: true
@@ -17,38 +17,42 @@ const apiCall = async (path: string, args?: RequestInit) => {
 
   const target = getTarget()
 
-  let response: Response
-  if (target === TargetName.Edge) {
-    response = await fetch(`http://localhost:9000${finalPath}`, {
-      credentials: 'include',
-      ...args,
-    })
-  } else {
-    response = await fetch(
-      `https://api.projectscrapmetal.com/${target}${finalPath}`,
-      {
-        credentials: 'same-origin',
+  try {
+    let response: Response
+    if (target === TargetName.Edge) {
+      response = await fetch(`http://localhost:9000${finalPath}`, {
+        credentials: 'include',
         ...args,
-      }
-    )
-  }
+      })
+    } else {
+      response = await fetch(
+        `https://api.projectscrapmetal.com/${target}${finalPath}`,
+        {
+          credentials: 'same-origin',
+          ...args,
+        }
+      )
+    }
 
-  const json = await response.json()
+    const json = await response.json()
 
-  let finalResponse: SuccessfulAPIResponse | FailedAPIResponse
-  if (response.ok) {
-    finalResponse = {
-      success: true,
-      data: json,
-    } as SuccessfulAPIResponse
-  } else {
-    finalResponse = {
+    return response.ok
+      ? {
+          success: true,
+          data: json,
+        }
+      : {
+          success: false,
+          error: json,
+        }
+  } catch (error) {
+    return {
       success: false,
-      error: json,
-    } as FailedAPIResponse
+      error: {
+        code: 'Internal Error',
+      },
+    }
   }
-
-  return finalResponse
 }
 
 export const postRequest = async <T extends SuccessfulAPIResponse>(

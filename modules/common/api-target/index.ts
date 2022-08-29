@@ -1,5 +1,4 @@
 export enum TargetName {
-  Local = 'local',
   Edge = 'edge',
   Dev = 'dev',
   Staging = 'staging',

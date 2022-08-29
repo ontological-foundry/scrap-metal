@@ -5,6 +5,7 @@ import { Route, Routes as RouterRoutes } from 'react-router-dom'
 const Home = lazy(() => import('./routes/Home'))
 const Matches = lazy(() => import('./routes/Matches'))
 const SignIn = lazy(() => import('./routes/SignIn'))
+const Target = lazy(() => import('./routes/TargetSelect'))
 
 export function Routes(): ReactElement {
   return (
@@ -15,6 +16,8 @@ export function Routes(): ReactElement {
         <Route path='/sign-in' element={<SignIn />} />
 
         <Route path='/matches' element={<Matches />} />
+
+        <Route path='/target' element={<Target />} />
       </RouterRoutes>
     </Suspense>
   )

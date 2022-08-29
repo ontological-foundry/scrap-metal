@@ -1,4 +1,4 @@
-import { Handler, Context } from 'hono'
+import type { Handler, Context } from 'hono'
 import { matchOrigin } from '../../utils/matchOrigin'
 
 export const options: Handler = async (c: Context): Promise<Response> => {

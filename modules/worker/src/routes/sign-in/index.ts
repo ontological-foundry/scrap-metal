@@ -1,4 +1,4 @@
-import { RequestError } from '@scrapmetal/common-types'
+import { RequestError } from '@scrapmetal/common/errors'
 import {
   errors,
   Get,
@@ -12,7 +12,7 @@ import {
   Var,
 } from 'faunadb'
 import { Handler } from 'hono'
-import { createClient } from '../../utils/faunaClient'
+import { createClient } from '@scrapmetal/common/worker/fauna-client'
 
 import { User } from '../../utils/User'
 import { validateSignInRequest } from './api-types.validator'
