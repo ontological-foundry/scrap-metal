@@ -10,7 +10,7 @@ const serve = async (servedir, listen) => {
       servedir,
     },
     {
-      entryPoints: ['api-target/App.tsx'],
+      entryPoints: ['src/App.tsx'],
       outdir: 'static',
       bundle: true,
       format: 'esm',

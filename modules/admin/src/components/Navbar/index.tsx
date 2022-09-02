@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { AppBar, Toolbar, ButtonBase, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 
-export default function Navbar(): ReactElement {
+export function Navbar(): ReactElement {
   return (
     <AppBar position='sticky'>
       <Toolbar>

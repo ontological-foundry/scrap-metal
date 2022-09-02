@@ -10,7 +10,7 @@ console.log('DIR', path.join(__dirname, '../static/index.html'))
 
 esbuild
   .build({
-    entryPoints: ['api-target/App.tsx'],
+    entryPoints: ['src/App.tsx'],
     assetNames: 'asset/[name]-[hash]',
     chunkNames: '[ext]/[name]-[hash]',
     outdir: 'dist',

@@ -3,7 +3,7 @@ import { Route, Routes as RouterRoutes } from 'react-router-dom'
 import Home from './pages/Home'
 import Maps from './pages/Maps'
 
-export default function Routes(): ReactElement {
+export function Routes(): ReactElement {
   return (
     <RouterRoutes>
       <Route index element={<Home />} />
