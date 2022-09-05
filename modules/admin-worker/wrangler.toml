@@ -3,8 +3,7 @@ compatibility_date = "2022-08-29"
 
 main = "src/index.ts"
 
-[vars]
-TEST = 'test string'
+node_compat = true
 
 [dev]
 port = 9234

@@ -9,7 +9,7 @@ import {
 } from '@mui/material'
 import React, { ChangeEvent, ReactElement } from 'react'
 
-import { setTarget, getTarget, TargetName } from '@scrapmetal/common/api-target'
+import { setTarget, getTarget, TargetName } from '@scrapmetal/common/client/apiTarget'
 
 export default function TargetSelect(): ReactElement {
   const handleTargetChange = (event: ChangeEvent<HTMLInputElement>) => {

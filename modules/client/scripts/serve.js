@@ -16,6 +16,8 @@ const serve = async (servedir, listen) => {
       format: 'esm',
       define: {
         'process.env.TARGET': JSON.stringify('development'),
+        'process.env.API_PORT': 9000,
+        'process.env.API_URL': 'https://api.projectscrapmetal.com',
       },
     }
   )

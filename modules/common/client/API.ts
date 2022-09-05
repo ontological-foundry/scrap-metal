@@ -1,11 +1,11 @@
-import { RequestError } from '@scrapmetal/common/errors'
-import { TargetName, getTarget } from '@scrapmetal/common/api-target'
+import { RequestError } from '../errors'
+import { TargetName, getTarget } from './apiTarget'
 
-export interface SuccessfulAPIResponse extends Response {
+export interface SuccessfulAPIResponse {
   success: true
   data: unknown
 }
-interface FailedAPIResponse extends Response {
+interface FailedAPIResponse {
   success: false
   error: {
     code: RequestError
@@ -20,13 +20,16 @@ const apiCall = async (path: string, args?: RequestInit) => {
   try {
     let response: Response
     if (target === TargetName.Edge) {
-      response = await fetch(`http://localhost:9000${finalPath}`, {
-        credentials: 'include',
-        ...args,
-      })
+      response = await fetch(
+        `http://localhost:${process.env.API_PORT}${finalPath}`,
+        {
+          credentials: 'include',
+          ...args,
+        }
+      )
     } else {
       response = await fetch(
-        `https://api.projectscrapmetal.com/${target}${finalPath}`,
+        `${process.env.API_URL}/${target}${finalPath}`,
         {
           credentials: 'same-origin',
           ...args,

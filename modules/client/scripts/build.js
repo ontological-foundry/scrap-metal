@@ -25,6 +25,8 @@ esbuild
     ],
     define: {
       'process.env.TARGET': JSON.stringify(process.env.TARGET ?? 'production'),
+      'process.env.API_PORT': 9000,
+      'process.env.API_URL': 'https://api.projectscrapmetal.com',
     },
   })
   .then(async result => {

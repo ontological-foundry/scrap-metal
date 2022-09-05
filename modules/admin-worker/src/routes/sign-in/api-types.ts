@@ -1,8 +1,5 @@
 export interface SignInRequest {
-  /**
-   * @format email
-   */
-  email: string
+  username: string
 
   /**
    * @minLength 15

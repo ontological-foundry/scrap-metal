@@ -1,19 +1,22 @@
-import React, { ReactElement, useRef, useState } from 'react'
+import { LockOutlined } from '@mui/icons-material'
 import {
+  Box,
   CircularProgress,
   Container,
+  Link,
   TextField,
   Typography,
-  Link,
-  Box,
 } from '@mui/material'
-import { LockOutlined } from '@mui/icons-material'
+import {
+  postRequest,
+  SuccessfulAPIResponse,
+} from '@scrapmetal/common/client/API'
+import React, { ReactElement, useRef, useState } from 'react'
 import { Link as RouterLink, useNavigate } from 'react-router-dom'
+import { FormAvatar } from '../../components/Form/FormAvatar'
 
 import { FormBackground } from '../../components/Form/FormBackground'
-import { FormAvatar } from '../../components/Form/FormAvatar'
 import { FormSubmit } from '../../components/Form/FormSubmit'
-import { postRequest, SuccessfulAPIResponse } from '../../utils/API'
 
 interface SignInResponse extends SuccessfulAPIResponse {
   data: {
