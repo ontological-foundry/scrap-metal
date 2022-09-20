@@ -1,5 +1,9 @@
 import esbuild from 'esbuild'
 import * as http from 'http'
+import env from 'env-var'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const serve = async (servedir, listen) => {
   // Start esbuild's local web server. Random port will be chosen by esbuild.
@@ -13,10 +17,10 @@ const serve = async (servedir, listen) => {
       bundle: true,
       format: 'esm',
       define: {
-        'process.env.TARGET': JSON.stringify('development'),
-        'process.env.API_PORT': 9234,
+        'process.env.TARGET': env.get('TARGET').asString() ?? 'development',
+        'process.env.API_PORT': env.get('EDGE_API_PORT').required().asInt(),
         'process.env.API_URL': JSON.stringify(
-          'https://admin-api.projectscrapmetal.com'
+          env.get('API_URL').required().asString()
         ),
       },
     }

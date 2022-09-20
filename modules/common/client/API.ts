@@ -21,7 +21,7 @@ const apiCall = async (path: string, args?: RequestInit) => {
     let response: Response
     if (target === TargetName.Edge) {
       response = await fetch(
-        `http://localhost:${process.env.API_PORT}${finalPath}`,
+        `http://localhost:${process.env.EDGE_API_PORT}${finalPath}`,
         {
           credentials: 'include',
           ...args,

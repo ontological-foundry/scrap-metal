@@ -10,4 +10,10 @@
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
-modules/worker/dist
+
+# DotEnv Vault
+**/.env*
+**/.dev.vars
+**/.flaskenv*
+!**/.env.project
+!**/.env.vault
