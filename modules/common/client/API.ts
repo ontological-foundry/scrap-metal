@@ -1,5 +1,5 @@
 import { RequestError } from '../errors'
-import { TargetName, getTarget } from './apiTarget'
+import { getTarget, TargetName } from './apiTarget'
 
 export interface SuccessfulAPIResponse {
   success: true
@@ -28,13 +28,10 @@ const apiCall = async (path: string, args?: RequestInit) => {
         }
       )
     } else {
-      response = await fetch(
-        `${process.env.API_URL}/${target}${finalPath}`,
-        {
-          credentials: 'same-origin',
-          ...args,
-        }
-      )
+      response = await fetch(`${process.env.API_URL}/${target}${finalPath}`, {
+        credentials: 'same-origin',
+        ...args,
+      })
     }
 
     const json = await response.json()
@@ -49,6 +46,7 @@ const apiCall = async (path: string, args?: RequestInit) => {
           error: json,
         }
   } catch (error) {
+    console.log('error')
     return {
       success: false,
       error: {

@@ -8,7 +8,7 @@ export const authToken: Handler = async (c, next) => {
       {
         code: RequestError.NoDataError,
       },
-      400
+      403
     )
   }
 

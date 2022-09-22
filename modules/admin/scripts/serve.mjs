@@ -17,11 +17,11 @@ const serve = async (servedir, listen) => {
       bundle: true,
       format: 'esm',
       define: {
-        'process.env.TARGET': env.get('TARGET').asString() ?? 'development',
-        'process.env.API_PORT': env.get('EDGE_API_PORT').required().asInt(),
-        'process.env.API_URL': JSON.stringify(
-          env.get('API_URL').required().asString()
+        'process.env.TARGET': JSON.stringify(env.get('TARGET') ?? 'dev'),
+        'process.env.EDGE_API_PORT': JSON.stringify(
+          env.get('EDGE_API_PORT').required()
         ),
+        'process.env.API_URL': JSON.stringify(env.get('API_URL').required()),
       },
     }
   )

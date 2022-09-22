@@ -25,7 +25,7 @@ export function OfficialMapEdit(): ReactElement {
         mapRef.current = res.data
         setLoading(false)
       } else {
-        console.error('Error Getting Map')
+        console.error('Error Getting Map', res.error)
       }
     })
   }, [])
@@ -34,21 +34,18 @@ export function OfficialMapEdit(): ReactElement {
     <Box
       sx={{
         margin: 2,
-        height: 1,
+        flex: 1,
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
       }}
     >
       <TitleBar title={'Map'} />
       <Box
         sx={{
-          height: 1,
-          width: 1,
+          flex: 1,
           display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
+          // width: 1,
+          // height: 1,
         }}
       >
         {loading ? (

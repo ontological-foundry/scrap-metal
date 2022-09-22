@@ -4,6 +4,10 @@ import { constants } from 'node:fs'
 import { copyFile } from 'node:fs/promises'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import env from 'env-var'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 console.log('DIR', path.join(__dirname, '../static/index.html'))
@@ -24,9 +28,11 @@ esbuild
       }),
     ],
     define: {
-      'process.env.TARGET': JSON.stringify(process.env.TARGET ?? 'production'),
-      'process.env.API_PORT': 9000,
-      'process.env.API_URL': 'https://api.projectscrapmetal.com',
+      'process.env.TARGET': JSON.stringify(env.get('TARGET') ?? 'production'),
+      'process.env.EDGE_API_PORT': JSON.stringify(
+        env.get('EDGE_API_PORT').required()
+      ),
+      'process.env.API_URL': JSON.stringify(env.get('API_URL').required()),
     },
   })
   .then(async result => {

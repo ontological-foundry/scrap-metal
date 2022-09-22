@@ -1,5 +1,9 @@
 import esbuild from 'esbuild'
 import * as http from 'http'
+import env from 'env-var'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 // https://gist.github.com/martinrue/2896becdb8a5ed81761e11ff2ea5898e
 
@@ -15,9 +19,11 @@ const serve = async (servedir, listen) => {
       bundle: true,
       format: 'esm',
       define: {
-        'process.env.TARGET': JSON.stringify('development'),
-        'process.env.API_PORT': 9000,
-        'process.env.API_URL': 'https://api.projectscrapmetal.com',
+        'process.env.TARGET': JSON.stringify(env.get('TARGET') ?? 'dev'),
+        'process.env.EDGE_API_PORT': JSON.stringify(
+          env.get('EDGE_API_PORT').required()
+        ),
+        'process.env.API_URL': JSON.stringify(env.get('API_URL').required()),
       },
     }
   )

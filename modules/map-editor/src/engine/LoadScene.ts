@@ -1,5 +1,5 @@
+import { debounce } from 'lodash'
 import Phaser from 'phaser'
-import { createResizeListener } from '../utils/createResizeListener'
 
 export const LoadSceneKey = 'Loading Scene'
 
