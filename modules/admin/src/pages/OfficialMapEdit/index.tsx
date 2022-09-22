@@ -48,16 +48,12 @@ export function OfficialMapEdit(): ReactElement {
           // height: 1,
         }}
       >
-        {loading ? (
-          <Box>Loading</Box>
-        ) : (
-          <MapEdit
-            map={mapRef.current!}
-            updateMap={() => {
-              console.log('hi')
-            }}
-          />
-        )}
+        <MapEdit
+          map={mapRef.current!}
+          updateMap={() => {
+            console.log('hi')
+          }}
+        />
       </Box>
     </Box>
   )

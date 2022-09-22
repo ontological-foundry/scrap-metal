@@ -28,10 +28,13 @@ const apiCall = async (path: string, args?: RequestInit) => {
         }
       )
     } else {
-      response = await fetch(`${process.env.API_URL}/${target}${finalPath}`, {
-        credentials: 'same-origin',
-        ...args,
-      })
+      response = await fetch(
+        `https://${process.env.API_PREFIX}.${target}.projectscrapmetal.com${finalPath}`,
+        {
+          credentials: 'same-origin',
+          ...args,
+        }
+      )
     }
 
     const json = await response.json()

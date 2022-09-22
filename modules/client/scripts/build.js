@@ -32,7 +32,9 @@ esbuild
       'process.env.EDGE_API_PORT': JSON.stringify(
         env.get('EDGE_API_PORT').required()
       ),
-      'process.env.API_URL': JSON.stringify(env.get('API_URL').required()),
+      'process.env.API_PREFIX': JSON.stringify(
+        env.get('API_PREFIX').required()
+      ),
     },
   })
   .then(async result => {

@@ -1,6 +1,6 @@
 import { MapData } from '@scrapmetal/common/types/MapData'
 import { debounce } from 'lodash'
-import React, { ReactElement, useEffect, useRef } from 'react'
+import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import { Box } from '@mui/material'
 import Phaser from 'phaser'
 import { EditMapScene, EditMapSceneKey } from '../engine/EditMapScene'
@@ -48,5 +48,18 @@ export function MapEdit({ map, updateMap }: MapEditProps): ReactElement {
     }
   }, [])
 
-  return <Box sx={{ width: 1, height: 1 }} ref={phaserElementRef} />
+  return (
+    <Box sx={{ width: 1, height: 1 }} ref={phaserElementRef}>
+      <Box
+        sx={{
+          position: 'absolute',
+          left: '50%',
+          top: '50%',
+          zIndex: -10,
+        }}
+      >
+        Sizing
+      </Box>
+    </Box>
+  )
 }
