@@ -28,12 +28,14 @@ esbuild
       }),
     ],
     define: {
-      'process.env.TARGET': JSON.stringify(env.get('TARGET') ?? 'production'),
+      'process.env.TARGET': JSON.stringify(
+        env.get('TARGET').asString() ?? 'production'
+      ),
       'process.env.EDGE_API_PORT': JSON.stringify(
-        env.get('EDGE_API_PORT').required()
+        env.get('EDGE_API_PORT').required().asString()
       ),
       'process.env.API_PREFIX': JSON.stringify(
-        env.get('API_PREFIX').required()
+        env.get('API_PREFIX').required().asString()
       ),
     },
   })
