@@ -1,10 +1,10 @@
 import { MapData } from '@scrapmetal/common/types/MapData'
 import { debounce } from 'lodash'
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import Phaser from 'phaser'
-import { EditMapScene, EditMapSceneKey } from '../engine/EditMapScene'
-import { LoadScene, LoadSceneKey } from '../engine/LoadScene'
+import { EditMapScene, EditMapSceneKey } from '../engine/Scenes/EditMapScene'
+import { LoadScene, LoadSceneKey } from '../engine/Scenes/LoadScene'
 
 interface MapEditProps {
   map: MapData
@@ -13,6 +13,8 @@ interface MapEditProps {
 
 export function MapEdit({ map, updateMap }: MapEditProps): ReactElement {
   const phaserElementRef = useRef<HTMLDivElement>(null)
+
+  const [isSizing, setIsSizing] = useState(false)
 
   useEffect(() => {
     const ref = phaserElementRef.current!
@@ -30,15 +32,21 @@ export function MapEdit({ map, updateMap }: MapEditProps): ReactElement {
     engine.scene.add(LoadSceneKey, LoadScene, true, {
       nextSceneKey: EditMapSceneKey,
     })
-    engine.scene.add(EditMapSceneKey, EditMapScene)
+    engine.scene.add(EditMapSceneKey, EditMapScene, false, {
+      map,
+      updateMap,
+    })
+
+    const setLarge = debounce(() => {
+      engine.scale.resize(ref.clientWidth, ref.clientHeight)
+      setIsSizing(false)
+    }, 500)
 
     const setSmall = () => {
       engine.scale.resize(0, 0)
+      setIsSizing(true)
       setLarge()
     }
-    const setLarge = debounce(() => {
-      engine.scale.resize(ref.clientWidth, ref.clientHeight)
-    }, 500)
 
     window.addEventListener('resize', setSmall)
 
@@ -49,17 +57,20 @@ export function MapEdit({ map, updateMap }: MapEditProps): ReactElement {
   }, [])
 
   return (
-    <Box sx={{ width: 1, height: 1 }} ref={phaserElementRef}>
+    <>
       <Box
         sx={{
-          position: 'absolute',
-          left: '50%',
-          top: '50%',
-          zIndex: -10,
+          width: 1,
+          height: 1,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
+        ref={phaserElementRef}
       >
-        Sizing
+        {isSizing && <Typography>Sizing</Typography>}
       </Box>
-    </Box>
+      <Box sx={{ width: 300 }}>Edit Tools</Box>
+    </>
   )
 }

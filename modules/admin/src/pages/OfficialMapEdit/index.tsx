@@ -1,11 +1,11 @@
-import { Box } from '@mui/material'
+import { Box, CircularProgress } from '@mui/material'
 import {
   getRequest,
   SuccessfulAPIResponse,
 } from '@scrapmetal/common/client/API'
 import { MapData } from '@scrapmetal/common/types/MapData'
 import { MapEdit } from '@scrapmetal/map-editor/src'
-import React, { ReactElement, useEffect, useRef, useState } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import TitleBar from '../../components/TitleBar'
 
@@ -16,14 +16,12 @@ interface GetMapResponse extends SuccessfulAPIResponse {
 export function OfficialMapEdit(): ReactElement {
   const { id } = useParams<{ id: string }>()
 
-  const mapRef = useRef<MapData>()
-  const [loading, setLoading] = useState(true)
+  const [mapData, setMapData] = useState<MapData>()
 
   useEffect(() => {
     getRequest<GetMapResponse>(`/official-map/${id}`).then(res => {
       if (res.success) {
-        mapRef.current = res.data
-        setLoading(false)
+        setMapData(res.data)
       } else {
         console.error('Error Getting Map', res.error)
       }
@@ -44,16 +42,18 @@ export function OfficialMapEdit(): ReactElement {
         sx={{
           flex: 1,
           display: 'flex',
-          // width: 1,
-          // height: 1,
         }}
       >
-        <MapEdit
-          map={mapRef.current!}
-          updateMap={() => {
-            console.log('hi')
-          }}
-        />
+        {mapData == null ? (
+          <CircularProgress />
+        ) : (
+          <MapEdit
+            map={mapData}
+            updateMap={() => {
+              console.log('hi')
+            }}
+          />
+        )}
       </Box>
     </Box>
   )

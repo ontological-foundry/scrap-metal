@@ -1,10 +1,10 @@
-export enum GraphicsKey {
-  Plains = 'Plains',
-  Forest = 'Forest',
+export enum TerrainGraphicsKey {
+  Plains = 0,
+  Forest = 1,
 }
 
-type GraphicsDataType = {
-  [index in GraphicsKey]: {
+type TerrainGraphicsDataType = {
+  [index in TerrainGraphicsKey]: {
     path: string
     key: string
     animKey: string
@@ -12,13 +12,13 @@ type GraphicsDataType = {
   }
 }
 
-export const TerrainGraphicsData: GraphicsDataType = {
-  [GraphicsKey.Plains]: {
+export const TerrainGraphicsData: TerrainGraphicsDataType = {
+  [TerrainGraphicsKey.Plains]: {
     path: 'terrain/plains.png',
     key: 'Plains',
     animKey: 'BG_Plains',
   },
-  [GraphicsKey.Forest]: {
+  [TerrainGraphicsKey.Forest]: {
     path: 'terrain/forest.png',
     key: 'Forest',
     animKey: 'BG_Forest',

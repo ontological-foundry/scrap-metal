@@ -24,5 +24,5 @@ export const getOfficialMap: Handler = async c => {
     return handleFaunaHTTPError(error, c)
   }
 
-  return c.json({ map })
+  return c.json(map)
 }

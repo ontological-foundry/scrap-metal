@@ -32,13 +32,11 @@ export function OfficialMaps(): ReactElement {
   useEffect(() => {
     getRequest<MapsResponse>('/official-maps').then(async res => {
       if (res.success) {
-        console.log('Maps', res.data)
-
         setUnpublishedMaps(res.data.unpublished)
         setPublishedMaps(res.data.published)
         setLoading(false)
       } else {
-        console.error('Cannot Get Maps')
+        console.error('Cannot Get Maps', res.error)
       }
     })
   }, [])

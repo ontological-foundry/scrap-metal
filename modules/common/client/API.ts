@@ -49,7 +49,7 @@ const apiCall = async (path: string, args?: RequestInit) => {
           error: json,
         }
   } catch (error) {
-    console.log('error')
+    console.log('Error Making Request', error)
     return {
       success: false,
       error: {

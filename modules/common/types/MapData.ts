@@ -5,7 +5,7 @@ export interface MapData {
       width: number
       height: number
     }
-    terrain: number[]
+    terrain: number[][]
   }
   published: boolean
 }
