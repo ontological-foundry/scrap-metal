@@ -3,8 +3,12 @@ import { debounce } from 'lodash'
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import { Box, Typography } from '@mui/material'
 import Phaser from 'phaser'
-import { EditMapScene, EditMapSceneKey } from '../engine/Scenes/EditMapScene'
+import {
+  EditMapScene,
+  EditMapSceneKey,
+} from '../engine/Scenes/EditScene/EditMapScene'
 import { LoadScene, LoadSceneKey } from '../engine/Scenes/LoadScene'
+import { Tools } from './Tools'
 
 interface MapEditProps {
   map: MapData
@@ -70,7 +74,9 @@ export function MapEdit({ map, updateMap }: MapEditProps): ReactElement {
       >
         {isSizing && <Typography>Sizing</Typography>}
       </Box>
-      <Box sx={{ width: 300 }}>Edit Tools</Box>
+      <Box sx={{ width: 300, margin: theme => theme.spacing(0, 2) }}>
+        <Tools />
+      </Box>
     </>
   )
 }
