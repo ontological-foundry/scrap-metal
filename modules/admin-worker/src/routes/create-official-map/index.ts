@@ -18,7 +18,7 @@ export const createOfficialMap: Handler = async c => {
       height: 15,
       width: 15,
     },
-    terrain: Array(15).fill(Array(15).fill(0)),
+    terrain: Array(15).fill(Array(15).fill('f')),
   }
 
   let response: CreateMapResponse

@@ -1021,8 +1021,11 @@ __metadata:
   dependencies:
     "@types/lodash": ^4.14.185
     "@types/react": ^18.0.20
+    "@types/react-responsive-spritesheet": ^1.0.0
     lodash: ^4.17.21
     phaser: ^3.55.2
+    react-responsive-spritesheet: ^2.3.9
+    valtio: ^1.7.1
   peerDependencies:
     "@mui/material": ^5.10.5
     react: ^18.2.0
@@ -1133,6 +1136,16 @@ __metadata:
   dependencies:
     "@types/react": "*"
   checksum: 6abb7c47d54f012272650df8a962a28bd82f219291e5ef8b4dfa7fe0bb98ae243b060bf9fbe8ceff6213141794855a006db194b490b00ffd15842ae19d0ce1f0
+  languageName: node
+  linkType: hard
+
+"@types/react-responsive-spritesheet@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@types/react-responsive-spritesheet@npm:1.0.0"
+  dependencies:
+    "@types/react": "*"
+    csstype: ^3.0.10
+  checksum: 7dd2356e1b1f7b32293f5b702435380dd6dbfaf4b2eff8da08009c318c41b8d13a5e630e3ae758546d8564b9b17a61231452ed2f98d449f560e41c15cac6ab7c
   languageName: node
   linkType: hard
 
@@ -2279,7 +2292,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"csstype@npm:^3.0.2, csstype@npm:^3.1.0":
+"csstype@npm:^3.0.10, csstype@npm:^3.0.2, csstype@npm:^3.1.0":
   version: 3.1.1
   resolution: "csstype@npm:3.1.1"
   checksum: 1f7b4f5fdd955b7444b18ebdddf3f5c699159f13e9cf8ac9027ae4a60ae226aef9bbb14a6e12ca7dba3358b007cee6354b116e720262867c398de6c955ea451d
@@ -5933,6 +5946,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-responsive-spritesheet@npm:^2.3.9":
+  version: 2.3.9
+  resolution: "react-responsive-spritesheet@npm:2.3.9"
+  checksum: 88e4abc2dca178065afa5a068d60170e8de3d4caba3f6ddbbe215902576467205bfa3c6e2708f51ad5170f2d610354517460e7a5662292d8a94575dc045e23ab
+  languageName: node
+  linkType: hard
+
 "react-router-dom@npm:^6.4.0":
   version: 6.4.0
   resolution: "react-router-dom@npm:6.4.0"
@@ -7250,6 +7270,36 @@ __metadata:
     vite:
       optional: true
   checksum: 4c97f5be9530f47300bf7d8fbf0efe3e5adc25717eff1d74f91231dabc8facda03e959fb01f91791311d7bc409c6944e15a66920fede3d0c295be00287aa7c23
+  languageName: node
+  linkType: hard
+
+"valtio@npm:^1.7.1":
+  version: 1.7.1
+  resolution: "valtio@npm:1.7.1"
+  dependencies:
+    proxy-compare: 2.3.0
+    use-sync-external-store: 1.2.0
+  peerDependencies:
+    "@babel/helper-module-imports": ">=7.12"
+    "@babel/types": ">=7.13"
+    aslemammad-vite-plugin-macro: ">=1.0.0-alpha.1"
+    babel-plugin-macros: ">=3.0"
+    react: ">=16.8"
+    vite: ">=2.8.6"
+  peerDependenciesMeta:
+    "@babel/helper-module-imports":
+      optional: true
+    "@babel/types":
+      optional: true
+    aslemammad-vite-plugin-macro:
+      optional: true
+    babel-plugin-macros:
+      optional: true
+    react:
+      optional: true
+    vite:
+      optional: true
+  checksum: cfd78abe23570ed8883e0e72279c9e2c1d134c23ea437734e2816785dcba58fbd528ac34e9738a7f83b6b38eb17535e668ac12dcfb9cbb34c0e6c5f25b1d31a2
   languageName: node
   linkType: hard
 

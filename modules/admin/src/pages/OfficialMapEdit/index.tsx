@@ -5,7 +5,7 @@ import {
 } from '@scrapmetal/common/client/API'
 import { MapData } from '@scrapmetal/common/types/MapData'
 import { MapEdit } from '@scrapmetal/map-editor/src'
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement, useCallback, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import TitleBar from '../../components/TitleBar'
 
@@ -28,6 +28,11 @@ export function OfficialMapEdit(): ReactElement {
     })
   }, [])
 
+  const updateMap = useCallback((newMap: Partial<MapData>) => {
+    // TODO
+    console.log('New Partial Map Data', newMap)
+  }, [])
+
   return (
     <Box
       sx={{
@@ -47,12 +52,7 @@ export function OfficialMapEdit(): ReactElement {
         {mapData == null ? (
           <CircularProgress />
         ) : (
-          <MapEdit
-            map={mapData}
-            updateMap={() => {
-              console.log('hi')
-            }}
-          />
+          <MapEdit map={mapData} updateMap={updateMap} />
         )}
       </Box>
     </Box>

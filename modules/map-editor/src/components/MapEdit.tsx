@@ -8,6 +8,7 @@ import {
   EditMapSceneKey,
 } from '../engine/Scenes/EditScene/EditMapScene'
 import { LoadScene, LoadSceneKey } from '../engine/Scenes/LoadScene'
+import { resetToolState } from '../utils/ToolState'
 import { Tools } from './Tools'
 
 interface MapEditProps {
@@ -57,6 +58,7 @@ export function MapEdit({ map, updateMap }: MapEditProps): ReactElement {
     return () => {
       engine.destroy(true)
       window.removeEventListener('resize', setSmall)
+      resetToolState()
     }
   }, [])
 

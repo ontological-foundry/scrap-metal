@@ -1,4 +1,4 @@
-import { TerrainGraphicsKey } from '@scrapmetal/common/engine/GraphicsData/Terrain'
+import { TileKey } from '@scrapmetal/common/engine/GraphicsData/TileData'
 import { MapData } from '@scrapmetal/common/types/MapData'
 import { cloneDeep } from 'lodash'
 import Phaser from 'phaser'
@@ -11,7 +11,7 @@ export const EditMapSceneKey = 'Edit Map Scene'
 
 interface SceneData {
   map: MapData
-  updateMap: () => void
+  updateMap: (newMap: Partial<MapData>) => void
 }
 
 export class EditMapScene extends Phaser.Scene {
@@ -43,7 +43,7 @@ export class EditMapScene extends Phaser.Scene {
           this,
           x,
           y,
-          terrainContent[x][y] as TerrainGraphicsKey,
+          terrainContent[x][y] as TileKey,
           this.EditorState
         )
       }

@@ -1,3 +1,5 @@
+import { TileKey } from '../engine/GraphicsData/TileData'
+
 export interface MapData {
   name: string
   content: {
@@ -5,7 +7,7 @@ export interface MapData {
       width: number
       height: number
     }
-    terrain: number[][]
+    terrain: TileKey[][]
   }
-  published: boolean
+  published?: boolean
 }

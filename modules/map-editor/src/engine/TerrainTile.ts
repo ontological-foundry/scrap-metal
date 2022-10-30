@@ -1,8 +1,8 @@
 import { TileSize } from '@scrapmetal/common/engine/GraphicsData/General'
 import {
-  TerrainGraphicsData,
-  TerrainGraphicsKey,
-} from '@scrapmetal/common/engine/GraphicsData/Terrain'
+  TileData,
+  TileKey
+} from '@scrapmetal/common/engine/GraphicsData/TileData'
 import Phaser from 'phaser'
 import { EditorState, GlobalStateType } from './Scenes/EditScene/EditorState'
 import { EventTypes } from './Scenes/EditScene/EventTypes'
@@ -12,13 +12,13 @@ export class TerrainTile extends Phaser.GameObjects.Sprite {
     scene: Phaser.Scene,
     x: number,
     y: number,
-    key: TerrainGraphicsKey,
+    key: TileKey,
     globalState: GlobalStateType
   ) {
     super(scene, x * TileSize, y * TileSize, '')
 
     this.setOrigin(0, 0)
-    this.play(TerrainGraphicsData[key].animKey)
+    this.play(TileData[key].animKey)
 
     scene.add.existing(this)
 
